@@ -1,34 +1,46 @@
-/*Un refugio de animales la ciudad de Avellaneda est· llevando a cabo un programa de adopciÛn de mascotas para alentar a los residentes a apoyar
-y cuidar a los animales que fueron rescatados. DespuÈs de seis meses de lanzar el programa, el refugio decidiÛ hacer un seguimiento de las casi
-600 personas que anotadas para adoptar animales sÌ adoptaron (se considera que se puede adoptar sÛlo un tipo de animal por persona, pero pueden ser
+/*Un refugio de animales la ciudad de Avellaneda est√° llevando a cabo un programa de adopci√≥n de mascotas para alentar a los residentes a apoyar
+y cuidar a los animales que fueron rescatados. Despu√©s de seis meses de lanzar el programa, el refugio decidi√≥ hacer un seguimiento de las casi
+600 personas que anotadas para adoptar animales s√≠ adoptaron (se considera que se puede adoptar s√≥lo un tipo de animal por persona, pero pueden ser
 varios animales de ese tipo).
 
 La carga finaliza con un adoptante igual a cero.
-Para cada adoptante encuestado que sÌ adoptÛ, se ingresan los siguientes datos (validar con FunciÛn):
-ï    CÛdigo de adoptante (entero, mayor a cero).
-ï    CÛdigo del animal adoptado (entero, de 101 a 110)
-ï    Cantidad de animales adoptados (entero, mayor a cero).
-ï    ValoraciÛn de la experiencia de adoptar (caracter, 'M' malo, 'R': regular,     'B': Bueno, 'E':excelente).
-.   Deseo de participar en otras experiencias de adopciÛn de mascotas (entero, 1: Si desea, 2: No desea)
+Para cada adoptante encuestado que s√≠ adopt√≥, se ingresan los siguientes datos (validar con Funci√≥n):
+‚Ä¢    C√≥digo de adoptante (entero, mayor a cero).
+‚Ä¢    C√≥digo del animal adoptado (entero, de 101 a 110)
+‚Ä¢    Cantidad de animales adoptados (entero, mayor a cero).
+‚Ä¢    Valoraci√≥n de la experiencia de adoptar (caracter, 'M' malo, 'R': regular,     'B': Bueno, 'E':excelente).
+.   Deseo de participar en otras experiencias de adopci√≥n de mascotas (entero, 1: Si desea, 2: No desea)
 
 
 Informar:
-a.    Listar la cantidad de animales adoptados, informando cÛdigo y cantidad (FunciÛn).
+a.    Listar la cantidad de animales adoptados, informando c√≥digo y cantidad (Funci√≥n).
 b.    Porcentaje de cada experiencia de adoptar una mascota respecto del total de     adoptantes.
-c.    Cu·l fue el cÛdigo del animal menos adoptado, entre los que sÌ fueron adoptados.   Puede haber m·s de uno, mostrarlos a todos. (FunciÛn).
-d.    Indicar cu·l es el promedio de animales adoptados por persona (de las personas que sÌ adoptaron).
-e.  Informar los cÛdigos de los adoptantes que desean volver a adoptar mascotas y la cantidad de adoptantes que no quieren repetir la experiencia.*/
+c.    Cu√°l fue el c√≥digo del animal menos adoptado, entre los que s√≠ fueron adoptados.   Puede haber m√°s de uno, mostrarlos a todos. (Funci√≥n).
+d.    Indicar cu√°l es el promedio de animales adoptados por persona (de las personas que s√≠ adoptaron).
+e.  Informar los c√≥digos de los adoptantes que desean volver a adoptar mascotas y la cantidad de adoptantes que no quieren repetir la experiencia.*/
 #include <stdio.h>
 
 int LimiteInferior(int);
 int LeerYValidar(int,int);
+char OpcionesLetras(char,char,char,char);
+int BuscarMinimo(int ce, int vector[])
 
 int main()
-{   int cod_animal,cod_adoptante;
+{   int cod_animal,cod_adoptante,Cant_animalesAdopt,DeseaParticipar;
+    char valoracion;
+
     printf("\nIngrese codigo del animal adoptado:");
     cod_animal=LeerYValidar(101,110);
     printf("\nIngrese codigo del adoptante:");
     cod_adoptante=LimiteInferior(0);
+    printf("\nIngrese cantidad de animales adoptadas [MAYOR A 0]:")
+    Cant_animalesAdopt=LimiteInferior(0);
+    printf("\nIngrese valoracion de la experiencia ['M' Mala, 'R' Regular, 'B' Buena, 'E' Excelente]");
+    valoracion=OpcionesLetras('M','R','B','E');
+    printf("\n¬øDesea volver a participar de la experiencia? [1:SI, 2:NO]:");
+    DeseaParticipar=LeerYValidar(1,2);
+
+
     printf("%d",cod_animal);
     printf("%d",cod_adoptante);
                return 0;
@@ -57,4 +69,28 @@ int LeerYValidar(int lim_inf, int lim_sup)
     return num;
 }
 
+char OpcionesLetras(char letra1,char letra2,char letra3,char letra4)
+{   char dato;
+
+    do
+    {
+        scanf("%c",&dato);
+        fflush(stdin);
+    }while(!((dato==letra1)||(dato==letra2)||(dato==letra3)||(dato==letra4)))
+
+    return dato;
+}
+
+int BuscarMinimo(int ce, int vector[])
+{
+    int i, int min=vector[0];
+
+    for(i=0;i<ce;i++)
+    {
+        if(vector[i]<min)
+            min=vector[i];
+    }
+
+    return min;
+}
 
